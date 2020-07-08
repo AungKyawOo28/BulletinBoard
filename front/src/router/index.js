@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SignUp from '../views/Registration/SignUp.vue'
 import SignIn from '../views/Registration/SignIn.vue'
+import DataTbe from '../views/CommonComponent/DataTb.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/signIn',
     name: 'signIn',
     component: SignIn
+  },
+  {
+    path: '/dataTab',
+    name: 'dt',
+    component: DataTbe
   },
   {
     path: '/about',

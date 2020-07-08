@@ -1,6 +1,7 @@
 <template>
-<!--div-->
+<!--#div-->
  <div>
+        <!--b-form-->
         <b-form @submit.prevent="handleSubmit" class="containerForm card">
           <!--#UserName -->
           <b-form-input type="text" v-model="username" class="form-control" placeholder="User Name" name="username"
@@ -10,22 +11,23 @@
           <!--/#UserName -->
           <!--#Password -->
           <b-form-input type="password" v-model="password" class="form-control" placeholder="Password" name="password"
-          v-validate="'required|alpha_spaces'" :class="{ 'is-invalid': submitted && errors.has('password') }" />
-          <div v-if="submitted && !pwd && errors.has('password')" class="invalid-feedback">*Password is required</div>
-          <div v-if="submitted && pwd && errors.has('password')" class="invalid-feedback" >*Password must have at least 6 characters</div>
+          v-validate="'required'" :class="{ 'is-invalid': submitted && errors.has('password') }" />
+          <div v-if="submitted && !password && errors.has('password')" class="invalid-feedback">*Password is required</div>
+          <div v-if="submitted && password && errors.has('password')" class="invalid-feedback" >*Password must have at least 6 characters</div>
           <!--/#Password -->
           <!--#SignUp Button -->
-          <b-button type="submit" variant="primary">Sign Up</b-button>
+          <b-button type="submit" v-on:click="login()" variant="primary">Sign Up</b-button>
           <!--/#SignUpButton -->
           <!--#SignInLink -->
           <router-link :to="{ path: 'signIn' }" class="signIn" >Sign In</router-link>
-          <!--#SignInLink -->
+          <!--/#SignInLink -->
         </b-form>
   </div>
-  <!--/div-->
+  <!--/#div-->
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'signUp',
   data () {
@@ -35,14 +37,35 @@ export default {
       submitted: false
     }
   },
+  mounted () {
+    this.login()
+  },
   methods: {
     handleSubmit (e) {
       this.submitted = true
       this.$validator.validateAll().then(result => {
         if (result) {
-          console.log('>>>')
+          console.log('>>>' + this.password)
         }
       })
+    },
+    login () {
+      var requestParam = {
+        userName: 'gg',
+        password: this.password
+      }
+      console.log(requestParam)
+      axios
+        .post('http://localhost:8082/api/login', requestParam, {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+          }
+        })
+        .then(response => {
+          console.log(response)
+        })
     }
   }
 }
