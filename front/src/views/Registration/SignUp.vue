@@ -1,7 +1,6 @@
 <template>
-<!--#div-->
+<!--div-->
  <div>
-        <!--b-form-->
         <b-form @submit.prevent="handleSubmit" class="containerForm card">
           <!--#UserName -->
           <b-form-input type="text" v-model="username" class="form-control" placeholder="User Name" name="username"
@@ -66,6 +65,9 @@ export default {
         .then(response => {
           console.log(response)
         })
+          console.log('>>>')
+        }
+      })
     }
   }
 }

@@ -3,7 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SignUp from '../views/Registration/SignUp.vue'
 import SignIn from '../views/Registration/SignIn.vue'
+<<<<<<< HEAD
 import DataTbe from '../views/CommonComponent/DataTb.vue'
+=======
+>>>>>>> e06493d2897b24d015ff7c1011b67d27ff00e967
 
 Vue.use(VueRouter)
 
@@ -22,11 +25,14 @@ const routes = [
     path: '/signIn',
     name: 'signIn',
     component: SignIn
+<<<<<<< HEAD
   },
   {
     path: '/dataTab',
     name: 'dt',
     component: DataTbe
+=======
+>>>>>>> e06493d2897b24d015ff7c1011b67d27ff00e967
   },
   {
     path: '/about',
